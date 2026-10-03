@@ -1,0 +1,755 @@
+/* =========================================================
+   PRODUCT CARD SHELL
+========================================================= */
+
+.product-card-shell {
+  min-width: 0;
+  height: 100%;
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.ab-product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+
+  border: 1px solid #e7eaf0;
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 22px rgba(16, 24, 40, 0.045);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.ab-product-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #d6e2ff;
+
+  box-shadow:
+    0 18px 42px rgba(16, 24, 40, 0.12);
+}
+
+
+/* =========================================================
+   IMAGE AREA
+========================================================= */
+
+.ab-product-image-wrap {
+  position: relative;
+
+  height: 260px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      #ffffff 0%,
+      #f7f9fc 48%,
+      #eef2f8 100%
+    );
+}
+
+
+/* =========================================================
+   IMAGE TRACK
+========================================================= */
+
+.ab-product-image-track {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE
+========================================================= */
+
+.ab-product-image {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 16px;
+
+  object-fit: contain;
+
+  user-select: none;
+  pointer-events: none;
+
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+
+/* =========================================================
+   IMAGE ZOOM
+========================================================= */
+
+.ab-product-card:hover .ab-product-image {
+  filter: saturate(1.03);
+}
+
+
+/* =========================================================
+   DISCOUNT BADGE
+========================================================= */
+
+.ab-discount-badge {
+  position: absolute;
+
+  top: 12px;
+  left: 12px;
+
+  z-index: 5;
+
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 26px;
+
+  padding: 5px 9px;
+
+  border-radius: 7px;
+
+  background: #e8f7ef;
+
+  color: #18864b;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 0.02em;
+
+  box-shadow:
+    0 4px 12px rgba(16, 24, 40, 0.06);
+}
+
+
+/* =========================================================
+   WISHLIST POSITION
+========================================================= */
+
+.ab-wishlist-position {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  z-index: 10;
+
+  display: flex;
+}
+
+
+/* =========================================================
+   WISHLIST BUTTON
+========================================================= */
+
+.ab-wish-btn {
+  width: 40px !important;
+  height: 40px !important;
+
+  background: rgba(255, 255, 255, 0.96) !important;
+
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+
+  box-shadow:
+    0 6px 18px rgba(16, 24, 40, 0.1) !important;
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease !important;
+}
+
+.ab-wish-btn:hover {
+  transform: scale(1.08);
+
+  background: #ffffff !important;
+
+  box-shadow:
+    0 8px 22px rgba(16, 24, 40, 0.14) !important;
+}
+
+.ab-wish-btn svg {
+  font-size: 20px;
+
+  color: #344054;
+
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.ab-wish-btn:hover svg {
+  transform: scale(1.08);
+}
+
+.ab-wish-active svg {
+  color: #e91e63 !important;
+}
+
+
+/* =========================================================
+   QUICK VIEW
+========================================================= */
+
+.ab-quick-view {
+  position: absolute !important;
+
+  right: 10px;
+
+  bottom: 38px;
+
+  z-index: 10;
+
+  width: 36px !important;
+  height: 36px !important;
+
+  opacity: 0;
+
+  color: #172033 !important;
+
+  background: rgba(255, 255, 255, 0.95) !important;
+
+  border: 1px solid #e7eaf0 !important;
+
+  box-shadow:
+    0 6px 16px rgba(16, 24, 40, 0.1) !important;
+
+  transform: translateY(7px);
+
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease !important;
+}
+
+.ab-product-card:hover .ab-quick-view {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.ab-quick-view svg {
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   IMAGE DOTS
+========================================================= */
+
+.ab-image-dots {
+  position: absolute;
+
+  left: 50%;
+  bottom: 12px;
+
+  z-index: 8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  padding: 5px 8px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.88);
+
+  box-shadow:
+    0 5px 15px rgba(16, 24, 40, 0.08);
+
+  transform: translateX(-50%);
+
+  backdrop-filter: blur(8px);
+}
+
+.ab-image-dot {
+  width: 6px;
+  height: 6px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 999px;
+
+  background: #cbd5e1;
+
+  cursor: pointer;
+
+  transition:
+    width 0.2s ease,
+    background 0.2s ease;
+}
+
+.ab-image-dot.active {
+  width: 17px;
+
+  background: #1769ff;
+}
+
+
+/* =========================================================
+   IMAGE COUNTER
+========================================================= */
+
+.ab-image-counter {
+  position: absolute;
+
+  left: 12px;
+  bottom: 12px;
+
+  z-index: 8;
+
+  padding: 5px 8px;
+
+  border-radius: 7px;
+
+  background: rgba(23, 32, 51, 0.78);
+
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  backdrop-filter: blur(8px);
+}
+
+
+/* =========================================================
+   IMAGE OVERLAY
+========================================================= */
+
+.ab-image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 4;
+
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: center;
+
+  padding-bottom: 42px;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(23, 32, 51, 0.12),
+      transparent 28%
+    );
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 0.25s ease;
+}
+
+.ab-image-overlay.visible {
+  opacity: 1;
+}
+
+.ab-image-overlay span {
+  padding: 6px 11px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  color: #172033;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  box-shadow:
+    0 5px 15px rgba(16, 24, 40, 0.1);
+}
+
+
+/* =========================================================
+   PRODUCT INFO
+========================================================= */
+
+.ab-product-info {
+  display: flex;
+  flex: 1;
+
+  flex-direction: column;
+
+  min-width: 0;
+
+  padding: 14px 15px 15px;
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.ab-product-category {
+  overflow: hidden;
+
+  margin-bottom: 5px;
+
+  color: #667085;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  line-height: 1.3;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.07em;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   PRODUCT TITLE
+========================================================= */
+
+.ab-product-title {
+  display: -webkit-box;
+
+  min-height: 40px;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  color: #172033;
+
+  font-size: 14px;
+  font-weight: 750;
+
+  line-height: 1.42;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+
+/* =========================================================
+   RATING ROW
+========================================================= */
+
+.ab-rating-row {
+  display: flex;
+
+  align-items: center;
+
+  min-height: 25px;
+
+  gap: 7px;
+
+  margin-top: 8px;
+}
+
+
+/* =========================================================
+   RATING BOX
+========================================================= */
+
+.ab-rating-box {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 3px;
+
+  padding: 4px 7px;
+
+  border-radius: 5px;
+
+  background: #18864b;
+
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.ab-rating-box svg {
+  width: 12px;
+  height: 12px;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   RATING TEXT
+========================================================= */
+
+.ab-rating-text {
+  color: #98a2b3;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.ab-no-rating {
+  color: #98a2b3;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.ab-product-price {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  margin-top: 10px;
+}
+
+
+/* =========================================================
+   SELLING PRICE
+========================================================= */
+
+.ab-product-selling {
+  color: #172033;
+
+  font-size: 18px;
+  font-weight: 850;
+
+  letter-spacing: -0.02em;
+}
+
+
+/* =========================================================
+   MRP
+========================================================= */
+
+.ab-product-mrp {
+  color: #98a2b3;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  text-decoration: line-through;
+}
+
+
+/* =========================================================
+   DISCOUNT
+========================================================= */
+
+.ab-product-discount {
+  color: #18864b;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   BOTTOM ACTION
+========================================================= */
+
+.ab-product-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 13px;
+  padding-top: 11px;
+
+  border-top: 1px solid #f0f2f5;
+
+  color: #1769ff;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   VIEW DETAILS
+========================================================= */
+
+.ab-view-details {
+  transition: transform 0.2s ease;
+}
+
+.ab-product-card:hover .ab-view-details {
+  transform: translateX(2px);
+}
+
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.ab-arrow {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+
+  background: #eef4ff;
+
+  color: #1769ff;
+
+  font-size: 15px;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.ab-product-card:hover .ab-arrow {
+  transform: translateX(3px);
+
+  background: #1769ff;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .ab-product-image-wrap {
+    height: 230px;
+  }
+
+  .ab-product-info {
+    padding: 13px;
+  }
+
+  .ab-product-title {
+    font-size: 13px;
+  }
+
+  .ab-product-selling {
+    font-size: 16px;
+  }
+
+  .ab-quick-view {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .ab-product-card {
+    border-radius: 14px;
+  }
+
+  .ab-product-image-wrap {
+    height: 190px;
+  }
+
+  .ab-product-image {
+    padding: 10px;
+  }
+
+  .ab-product-info {
+    padding: 11px;
+  }
+
+  .ab-product-category {
+    font-size: 9px;
+  }
+
+  .ab-product-title {
+    min-height: 37px;
+
+    font-size: 12px;
+  }
+
+  .ab-product-selling {
+    font-size: 15px;
+  }
+
+  .ab-product-mrp {
+    font-size: 10px;
+  }
+
+  .ab-product-discount {
+    font-size: 10px;
+  }
+
+  .ab-product-bottom {
+    margin-top: 10px;
+    padding-top: 9px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .ab-product-card,
+  .ab-product-image,
+  .ab-quick-view,
+  .ab-wish-btn,
+  .ab-image-dot,
+  .ab-arrow {
+    transition: none !important;
+  }
+}
