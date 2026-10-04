@@ -50,7 +50,6 @@ export const sendLoginSignupOtp = createAsyncThunk<
 
     async ({ email, role }, { rejectWithValue }) => {
         try {
-
             const response = await api.post(
                 "/auth/sent/login-signup-otp",
                 {
@@ -64,10 +63,12 @@ export const sendLoginSignupOtp = createAsyncThunk<
         } catch (error: any) {
 
             console.log("LOGIN OTP ERROR:", error);
+
             console.log(
                 "LOGIN OTP STATUS:",
                 error?.response?.status
             );
+
             console.log(
                 "LOGIN OTP DATA:",
                 error?.response?.data
@@ -109,10 +110,12 @@ export const sendRegisterOtp = createAsyncThunk<
         } catch (error: any) {
 
             console.log("REGISTER OTP ERROR:", error);
+
             console.log(
                 "REGISTER OTP STATUS:",
                 error?.response?.status
             );
+
             console.log(
                 "REGISTER OTP DATA:",
                 error?.response?.data
@@ -344,11 +347,25 @@ const authSlice = createSlice({
                     state.loading = false;
                     state.error = null;
 
-                    state.jwt =
+                    // Get JWT from login response
+                    const jwt =
                         action.payload?.jwt || null;
 
+                    // Save JWT in Redux
+                    state.jwt = jwt;
+
+                    // Save user data
                     state.user =
                         action.payload || null;
+
+                    // Save JWT in browser storage
+                    // so API requests can send Authorization header
+                    if (jwt) {
+                        localStorage.setItem(
+                            "jwt",
+                            jwt
+                        );
+                    }
                 }
             )
 
@@ -386,11 +403,24 @@ const authSlice = createSlice({
                     state.loading = false;
                     state.error = null;
 
-                    state.jwt =
+                    // Get JWT from seller login response
+                    const jwt =
                         action.payload?.jwt || null;
 
+                    // Save JWT in Redux
+                    state.jwt = jwt;
+
+                    // Save seller data
                     state.user =
                         action.payload || null;
+
+                    // Save JWT in browser storage
+                    if (jwt) {
+                        localStorage.setItem(
+                            "jwt",
+                            jwt
+                        );
+                    }
                 }
             )
 
