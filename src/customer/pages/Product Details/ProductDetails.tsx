@@ -564,9 +564,9 @@ const ProductDetails = () => {
   if (loading) {
     return (
       <main className="ab-page py-8">
-        <div className="ab-section">
+        <div className="ab-section min-w-0">
           <div className="ab-card p-8">
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            <div className="grid min-w-0 grid-cols-1 gap-5 sm:gap-7 lg:grid-cols-2 lg:gap-8">
 
               <div className="animate-pulse">
                 <div className="h-[450px] rounded-2xl bg-slate-200" />
@@ -608,7 +608,7 @@ const ProductDetails = () => {
   if (!product) {
     return (
       <main className="ab-page py-16">
-        <div className="ab-section">
+        <div className="ab-section min-w-0">
 
           <div className="ab-card flex flex-col items-center justify-center p-10 text-center">
 
@@ -668,17 +668,17 @@ const ProductDetails = () => {
    */
 
   return (
-    <main className="ab-page py-5 sm:py-8">
+    <main className="ab-page overflow-x-hidden py-3 sm:py-6 lg:py-8">
 
-      <div className="ab-section">
+      <div className="ab-section min-w-0">
 
         {/* =================================================
             PRODUCT MAIN CARD
         ================================================= */}
 
-        <div className="ab-card overflow-hidden p-4 sm:p-6 lg:p-8">
+        <div className="ab-card min-w-0 overflow-hidden p-3 sm:p-5 lg:p-8">
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <div className="grid min-w-0 grid-cols-1 gap-5 sm:gap-7 lg:grid-cols-2 lg:gap-8">
 
             {/* =================================================
                 IMAGE GALLERY
@@ -691,46 +691,19 @@ const ProductDetails = () => {
                 {/* THUMBNAILS */}
 
                 <div
-                  className="
-                    order-2
-                    flex
-                    max-w-full
-                    gap-3
-                    overflow-x-auto
-                    pb-1
-                    sm:order-1
-                    sm:w-[84px]
-                    sm:flex-col
-                    sm:overflow-x-visible
-                  "
+                  className="order-2 flex max-w-full gap-3 overflow-x-auto pb-1 sm:order-1 sm:w-[84px] sm:flex-col sm:overflow-x-visible"
                 >
-
-                  {images.map(
-                    (image, index) => (
-                      <button
-                        key={`${image}-${index}`}
-                        type="button"
-                        onClick={() =>
-                          setSelectedImage(index)
-                        }
-                        className={`
-                          h-20
-                          w-20
-                          flex-shrink-0
-                          overflow-hidden
-                          rounded-xl
-                          border-2
-                          bg-white
-                          transition-all
-                          ${
-                            selectedImage ===
-                            index
-                              ? "border-blue-600 ring-2 ring-blue-100"
-                              : "border-slate-200 hover:border-slate-400"
-                          }
-                        `}
-                      >
-
+                  {images.map((image, index) => (
+                    <button
+                      key={`${image}-${index}`}
+                      type="button"
+                      onClick={() => setSelectedImage(index)}
+                      className={`h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border-2 bg-white transition-all sm:h-20 sm:w-20 ${
+                        selectedImage === index
+                          ? "border-blue-600 ring-2 ring-blue-100"
+                          : "border-slate-200 hover:border-slate-400"
+                      }`}
+                    >
                         <img
                           src={image}
                           alt={`${product.title} ${index + 1}`}
@@ -752,23 +725,7 @@ const ProductDetails = () => {
                 {/* MAIN IMAGE */}
 
                 <div
-                  className="
-                    order-1
-                    relative
-                    flex
-                    min-h-[360px]
-                    flex-1
-                    items-center
-                    justify-center
-                    overflow-hidden
-                    rounded-2xl
-                    border
-                    border-slate-100
-                    bg-[#f8fafc]
-                    p-5
-                    sm:order-2
-                    sm:min-h-[500px]
-                  "
+                  className="order-1 relative flex min-h-[280px] min-w-0 flex-1 items-center justify-center overflow-hidden rounded-2xl border border-slate-100 bg-[#f8fafc] p-3 sm:order-2 sm:min-h-[420px] sm:p-5 lg:min-h-[500px]"
                 >
 
                   <img
@@ -778,14 +735,7 @@ const ProductDetails = () => {
                       "/images/img0.jpg"
                     }
                     alt={product.title}
-                    className="
-                      max-h-[520px]
-                      w-full
-                      object-contain
-                      transition-transform
-                      duration-300
-                      hover:scale-105
-                    "
+                    className="max-h-[340px] w-full object-contain transition-transform duration-300 sm:max-h-[460px] lg:max-h-[520px] lg:hover:scale-105"
                     onError={(
                       event
                     ) => {
@@ -861,13 +811,7 @@ const ProductDetails = () => {
               {/* TITLE */}
 
               <h1
-                className="
-                  text-2xl
-                  font-extrabold
-                  leading-tight
-                  text-slate-800
-                  sm:text-3xl
-                "
+                className="break-words text-xl font-extrabold leading-tight text-slate-800 sm:text-2xl lg:text-3xl"
               >
                 {product.title}
               </h1>
@@ -948,7 +892,7 @@ const ProductDetails = () => {
                   PRICE
               ================================================= */}
 
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
 
                 <span
                   className="
@@ -1000,7 +944,7 @@ const ProductDetails = () => {
                   DELIVERY / BENEFITS
               ================================================= */}
 
-              <div className="mt-7 space-y-4">
+              <div className="mt-5 space-y-4 sm:mt-7">
 
                 <div className="flex items-center gap-3">
 
@@ -1075,7 +1019,7 @@ const ProductDetails = () => {
               ================================================= */}
 
               {sizes.length > 0 && (
-                <div className="mt-8">
+                <div className="mt-6 sm:mt-8">
 
                   <div className="mb-3 flex items-center justify-between">
 
@@ -1126,7 +1070,7 @@ const ProductDetails = () => {
                   QUANTITY
               ================================================= */}
 
-              <div className="mt-8">
+              <div className="mt-6 sm:mt-8">
 
                 <h3 className="mb-3 font-bold text-slate-800">
                   Quantity
@@ -1216,7 +1160,7 @@ const ProductDetails = () => {
                   ACTION BUTTONS
               ================================================= */}
 
-              <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="mt-6 grid grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-2">
 
                 {/* ADD TO BAG */}
 
@@ -1360,7 +1304,7 @@ const ProductDetails = () => {
             PRODUCT DESCRIPTION
         ================================================= */}
 
-        <div className="ab-card mt-6 p-5 sm:p-7">
+        <div className="ab-card mt-4 min-w-0 p-4 sm:mt-6 sm:p-7">
 
           <h2 className="text-xl font-extrabold text-slate-800">
             Product Description
@@ -1379,7 +1323,7 @@ const ProductDetails = () => {
             SIMILAR PRODUCTS
         ================================================= */}
 
-        <div className="ab-card mt-6 overflow-hidden p-4 sm:p-6">
+        <div className="ab-card mt-4 min-w-0 overflow-hidden p-3 sm:mt-6 sm:p-6">
 
           <div className="mb-5">
 
@@ -1401,7 +1345,7 @@ const ProductDetails = () => {
             REVIEWS
         ================================================= */}
 
-        <div className="ab-card mt-6 overflow-hidden p-4 sm:p-6">
+        <div className="ab-card mt-4 min-w-0 overflow-hidden p-3 sm:mt-6 sm:p-6">
 
           <div className="mb-5">
 

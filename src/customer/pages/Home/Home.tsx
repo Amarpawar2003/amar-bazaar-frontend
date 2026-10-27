@@ -166,6 +166,19 @@ const heroSlides = [
     primaryRoute: "/products/Footwear",
     secondaryRoute: "/products",
   },
+  {
+    id: 7,
+    badge: "DIWALI COLLECTION 2026 • FESTIVE EDITION",
+    title: "Celebrate more.",
+    highlight: "Save more.",
+    description: "Thoughtfully picked festive fashion, home essentials and everyday favourites—beautiful finds for every celebration.",
+    primaryButton: "Shop Diwali Deals",
+    secondaryButton: "Explore Products",
+    image: "/images/saree-fashion-banner.jpg",
+    gradient: "from-[#7f1d1d] via-[#b45309] to-[#f59e0b]",
+    primaryRoute: "/products",
+    secondaryRoute: "/products",
+  },
 ];
 
 
@@ -235,7 +248,7 @@ const Home = () => {
       setFeaturedProductIndex(
         (current) => (current + 1) % products.length
       );
-    }, 2000);
+    }, 5000);
 
     return () => clearInterval(timer);
   }, [products.length]);
@@ -269,7 +282,7 @@ const Home = () => {
             heroSlides.length
         );
 
-      }, 2000);
+      }, 5000);
 
     return () => {
       clearInterval(timer);
@@ -644,7 +657,9 @@ const Home = () => {
     <main
       className="
         ab-page
-        pb-16
+        pb-28
+        sm:pb-24
+        lg:pb-16
       "
     >
 
@@ -664,8 +679,10 @@ const Home = () => {
         <div
           className={`
             relative
-            min-h-[400px]
+            min-h-[500px]
             overflow-hidden
+            sm:min-h-[460px]
+            lg:min-h-[400px]
             rounded-3xl
             bg-gradient-to-r
             ${slide.gradient}
@@ -724,13 +741,19 @@ const Home = () => {
               relative
               z-10
               grid
-              min-h-[400px]
+              grid-cols-1
               items-center
-              gap-8
-              px-6
-              py-10
+              gap-4
+              px-5
+              pt-7
+              pb-14
+              sm:min-h-[460px]
+              sm:gap-6
               sm:px-10
+              sm:py-10
+              lg:min-h-[400px]
               lg:grid-cols-2
+              lg:gap-8
               lg:px-16
             "
           >
@@ -908,19 +931,24 @@ const Home = () => {
               key={`image-${slide.id}`}
               className="
                 relative
-                hidden
-                h-[300px]
+                flex
+                h-[170px]
                 items-center
                 justify-center
-                lg:flex
+                sm:h-[220px]
+                lg:h-[300px]
               "
             >
 
               <div
                 className="
                   absolute
-                  h-64
-                  w-64
+                  h-36
+                  w-36
+                  sm:h-48
+                  sm:w-48
+                  lg:h-64
+                  lg:w-64
                   rounded-full
                   bg-white/10
                   blur-[1px]
@@ -930,8 +958,12 @@ const Home = () => {
               <div
                 className="
                   absolute
-                  h-72
-                  w-72
+                  h-44
+                  w-44
+                  sm:h-56
+                  sm:w-56
+                  lg:h-72
+                  lg:w-72
                   rounded-full
                   border
                   border-white/10
@@ -940,12 +972,18 @@ const Home = () => {
 
               <img
                 src={slide.image}
-                alt="Amar Bazaar"
+                alt={`${slide.title} ${slide.highlight}`}
+                onError={(event) => {
+                  event.currentTarget.style.visibility = "hidden";
+                }}
                 className="
                   relative
                   z-10
-                  max-h-[285px]
-                  max-w-[90%]
+                  max-h-[160px]
+                  max-w-[88%]
+                  sm:max-h-[210px]
+                  lg:max-h-[285px]
+                  lg:max-w-[90%]
                   object-contain
                   drop-shadow-[0_25px_25px_rgba(0,0,0,.25)]
                   transition-all
@@ -969,6 +1007,7 @@ const Home = () => {
             }
             aria-label="Previous slide"
             sx={{
+              display: { xs: "none", sm: "flex" },
               position:
                 "absolute",
               left: {
@@ -1010,6 +1049,7 @@ const Home = () => {
             }
             aria-label="Next slide"
             sx={{
+              display: { xs: "none", sm: "flex" },
               position:
                 "absolute",
               right: {
@@ -1114,6 +1154,46 @@ const Home = () => {
       </section>
 
       {/* =================================================
+          FESTIVE EDIT / FEATURED COLLECTION
+      ================================================= */}
+      <section className="ab-section pt-5 sm:pt-7">
+        <div className="relative isolate overflow-hidden rounded-2xl border border-amber-200/70 bg-[#fffaf2] shadow-[0_12px_36px_rgba(70,35,10,0.08)]">
+          <div aria-hidden="true" className="pointer-events-none absolute right-4 top-3 z-10 flex items-center gap-2 text-lg sm:right-7 sm:top-5 sm:gap-3 sm:text-2xl">
+            <span className="animate-pulse">✨</span>
+            <span>🏮</span>
+            <span className="animate-pulse [animation-delay:400ms]">🎇</span>
+            <span>🪔</span>
+          </div>
+          <div className="absolute inset-y-0 right-0 -z-10 w-2/5 bg-gradient-to-l from-amber-100/70 to-transparent" />
+          <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-rose-500 via-amber-300 to-orange-500" />
+          <div className="grid gap-6 p-5 sm:p-7 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:p-9">
+            <div>
+              <p className="m-0 text-[10px] font-bold uppercase tracking-[.22em] text-amber-800 sm:text-xs">The festive edit · Amar Bazaar</p>
+              <h2 className="m-0 mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">Make every celebration <span className="text-amber-700">feel special.</span></h2>
+              <p className="m-0 mt-3 max-w-xl text-sm leading-6 text-slate-600 sm:text-base">Explore festive fashion, thoughtful gifts, home essentials and everyday favourites—all in one convenient place.</p>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <Button onClick={() => navigate("/products")} variant="contained" endIcon={<ArrowForward />} sx={{ borderRadius: "10px", px: 2.5, py: 1.2, bgcolor: "#8a4b08", color: "#fff", fontWeight: 700, textTransform: "none", boxShadow: "none", "&:hover": { bgcolor: "#713d06", boxShadow: "0 8px 18px rgba(113,61,6,.18)" } }}>Explore the collection</Button>
+                <span className="text-xs font-medium text-slate-500">A little something for everyone</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-1">
+              {[
+                { number: "01", title: "Festive fashion", subtitle: "Styles for every gathering" },
+                { number: "02", title: "Gifts & essentials", subtitle: "Thoughtful picks, made easy" },
+                { number: "03", title: "Everyday favourites", subtitle: "Shop all your essentials" },
+              ].map((item) => (
+                <button key={item.number} type="button" onClick={() => navigate("/products")} className="group flex items-center gap-4 rounded-xl border border-slate-200/80 bg-white/90 p-4 text-left transition duration-200 hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-md">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-xs font-bold tracking-wide text-amber-800">{item.number}</span>
+                  <span className="min-w-0"><span className="block text-sm font-semibold text-slate-900">{item.title}</span><span className="mt-1 block text-xs text-slate-500">{item.subtitle}</span></span>
+                  <ArrowForward className="ml-auto shrink-0 text-slate-400 transition group-hover:translate-x-1 group-hover:text-amber-700" fontSize="small" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =================================================
           PREMIUM PRODUCT STRIP
       ================================================= */}
       {!productsLoading && products.length > 0 && (
@@ -1133,22 +1213,31 @@ const Home = () => {
               </button>
             </div>
 
-            <div className="relative overflow-hidden rounded-2xl border border-slate-100 bg-white p-2 shadow-sm">
-              <div className="flex w-full gap-2 sm:gap-3">
+            <div className="relative rounded-2xl border border-slate-100 bg-white p-2 shadow-sm">
+              <div className="flex w-full gap-2 overflow-x-auto pb-1 sm:gap-3">
                 {Array.from({ length: Math.min(6, products.length) }, (_, offset) => products[(featuredProductIndex + offset) % products.length]).map((product) => (
                   <div
                     key={`featured-${product.id}`}
                     onClick={() => navigate(`/product-details/${product.id}`)}
-                    className="group min-w-0 w-[calc(50%-4px)] shrink-0 cursor-pointer rounded-xl border border-slate-100 bg-white p-2 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-100 hover:bg-slate-50 hover:shadow-sm sm:w-[calc(33.333%-8px)] md:w-[calc(25%-9px)] lg:w-[calc(20%-10px)] xl:w-[calc(16.666%-10px)]"
+                    className="group min-w-[220px] shrink-0 cursor-pointer rounded-xl border border-slate-100 bg-white p-2 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-100 hover:bg-slate-50 hover:shadow-sm sm:min-w-0 sm:w-[calc(33.333%-8px)] md:w-[calc(25%-9px)] lg:w-[calc(20%-10px)] xl:w-[calc(16.666%-10px)]"
                   >
                     <div className="flex items-center gap-2">
                       <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-slate-50 sm:h-16 sm:w-16">
-                        <img
-                          src={product.images?.[0] || "/images/portable-air-cooler.png"}
-                          alt={product.title}
-                          className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
-                          onError={(event) => { event.currentTarget.src = "/images/portable-air-cooler.png"; }}
-                        />
+                        {product.images?.[0] ? (
+                          <img
+                            src={product.images[0]}
+                            alt={product.title}
+                            loading="lazy"
+                            className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
+                            onError={(event) => {
+                              event.currentTarget.style.visibility = "hidden";
+                            }}
+                          />
+                        ) : (
+                          <div className="flex h-full items-center justify-center text-[10px] text-slate-400">
+                            No image
+                          </div>
+                        )}
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="m-0 truncate text-[11px] font-bold text-slate-800 sm:text-xs">{product.title}</p>
@@ -1198,8 +1287,10 @@ const Home = () => {
             grid
             grid-cols-2
             divide-x
+            divide-y
             overflow-hidden
             sm:grid-cols-4
+            sm:divide-y-0
           "
         >
 
@@ -1239,20 +1330,25 @@ const Home = () => {
                 className="
                   flex
                   items-center
-                  gap-3
-                  px-4
-                  py-4
+                  min-w-0
+                  gap-2
+                  px-3
+                  py-3
                   transition
                   hover:bg-slate-50
+                  sm:gap-3
                   sm:px-6
+                  sm:py-4
                 "
               >
 
                 <div
                   className="
                     flex
-                    h-10
-                    w-10
+                    h-9
+                    w-9
+                    sm:h-10
+                    sm:w-10
                     shrink-0
                     items-center
                     justify-center
@@ -1495,7 +1591,9 @@ const Home = () => {
       <section
         className="
           ab-section
-          pt-12
+          pt-8
+          sm:pt-10
+          lg:pt-12
         "
       >
 
@@ -1503,11 +1601,16 @@ const Home = () => {
 
         <div
           className="
-            mb-6
+            mb-4
+            sm:mb-6
             flex
             items-end
             justify-between
-            gap-4
+            gap-3
+            border-b
+            border-slate-200
+            pb-4
+            sm:pb-5
           "
         >
 
@@ -1530,11 +1633,13 @@ const Home = () => {
             <h2
               className="
                 m-0
-                text-2xl
-                font-extrabold
+                text-[25px]
+                leading-tight
+                font-black
                 tracking-tight
-                text-[#172033]
+                text-[#101828]
                 sm:text-3xl
+                lg:text-4xl
               "
             >
               Latest Products
@@ -1543,9 +1648,11 @@ const Home = () => {
 
             <p
               className="
-                mt-1
-                text-sm
-                text-gray-500
+                mt-1.5
+                text-xs
+                leading-5
+                text-slate-500
+                sm:text-sm
               "
             >
               Explore products from our sellers.
@@ -1565,12 +1672,20 @@ const Home = () => {
             className="
               hidden
               items-center
-              gap-1
+              gap-2
+              rounded-xl
+              border
+              border-blue-200
+              bg-white
+              px-4
+              py-2.5
               text-sm
               font-bold
               text-[#1769ff]
+              shadow-sm
               transition
-              hover:text-blue-800
+              hover:border-blue-500
+              hover:bg-blue-50
               sm:flex
             "
           >
@@ -1698,9 +1813,11 @@ const Home = () => {
             <div
               className="
                 grid
-                grid-cols-2
+                grid-cols-1
+                items-stretch
                 gap-3
                 sm:grid-cols-2
+                sm:gap-4
                 md:grid-cols-3
                 lg:grid-cols-4
                 xl:grid-cols-5

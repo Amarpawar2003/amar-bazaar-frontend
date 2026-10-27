@@ -10,6 +10,7 @@ import {
   InputBase,
   Menu,
   MenuItem,
+  ListItemButton,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
@@ -298,6 +299,58 @@ const Navbar = () => {
             "0 1px 10px rgba(16,24,40,0.08)",
         }}
       >
+        {/* Festive offer ticker */}
+        <style>{`
+          @keyframes amarBazaarMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .amar-bazaar-marquee {
+            animation: amarBazaarMarquee 28s linear infinite;
+          }
+          .amar-bazaar-marquee:hover {
+            animation-play-state: paused;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .amar-bazaar-marquee { animation: none; }
+          }
+        `}</style>
+        {/* Diwali lights + festive offer ticker */}
+        <div className="relative overflow-hidden border-b border-amber-300/30 bg-gradient-to-r from-[#301047] via-[#641b36] to-[#8b2c20] text-white">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 flex justify-around text-[12px] leading-none opacity-90">
+            {["✨","🪔","💡","✨","🏮","💡","🪔","✨","💡","🏮","✨","🪔"].map((light, i) => (
+              <span key={i} className="amar-bazaar-light inline-block">{light}</span>
+            ))}
+          </div>
+          <div className="amar-bazaar-marquee flex w-max items-center py-3 pt-4 text-[11px] font-bold tracking-[.09em] sm:text-xs">
+            {[0, 1].map((copy) => (
+              <div key={copy} className="flex shrink-0 items-center uppercase">
+                <span className="px-5 text-amber-200">🪔 Diwali Dhamaka 2026</span>
+                <span className="text-amber-200/60">✦</span>
+                <span className="px-5">🎆 Celebrate the Festival of Lights</span>
+                <span className="text-amber-200/60">✦</span>
+                <span className="px-5">🏮 Akash Kandil · Diyas · Festive Finds</span>
+                <span className="text-amber-200/60">✦</span>
+                <span className="px-5">🎇 Discover gifts, fashion & home essentials</span>
+                <span className="text-amber-200/60">✦</span>
+                <span className="px-5">✨ Shop Amar Bazaar</span>
+              </div>
+            ))}
+          </div>
+          <style>{`
+            @keyframes amarBazaarTwinkle {
+              0%, 100% { opacity: .55; transform: translateY(0); }
+              50% { opacity: 1; transform: translateY(2px); }
+            }
+            .amar-bazaar-light { animation: amarBazaarTwinkle 1.8s ease-in-out infinite; }
+            .amar-bazaar-light:nth-child(3n) { animation-delay: .4s; }
+            .amar-bazaar-light:nth-child(3n + 1) { animation-delay: .8s; }
+            @media (prefers-reduced-motion: reduce) {
+              .amar-bazaar-light { animation: none; }
+            }
+          `}</style>
+        </div>
+
         {/* =================================================
             TOP NAV
         ================================================= */}
@@ -359,10 +412,10 @@ const Navbar = () => {
               <h1
                 className="
                   m-0
-                  text-[19px]
+                  text-[18px]
                   sm:text-xl
                   md:text-2xl
-                  font-extrabold
+                  font-black
                   tracking-tight
                   bg-gradient-to-r
                   from-blue-600
@@ -477,13 +530,13 @@ const Navbar = () => {
           ================================================= */}
 
           <div
-            className="
-              flex
+            className={`
+              ${isLarge ? "flex" : "hidden"}
               items-center
               gap-0
               sm:gap-1
               md:gap-2
-            "
+            `}
           >
             {/* =================================================
                 ACCOUNT
@@ -800,7 +853,7 @@ const Navbar = () => {
                 flex
                 justify-center
                 items-center
-                h-[48px]
+                h-[54px]
                 gap-1
                 m-0
                 p-0
@@ -816,9 +869,10 @@ const Navbar = () => {
                   flex
                   items-center
                   gap-1.5
-                  text-sm
-                  font-semibold
-                  text-gray-700
+                  text-[14px]
+                  font-bold
+                  tracking-[0.01em]
+                  text-slate-700
                   hover:text-blue-600
                   hover:bg-blue-50
                   transition
@@ -860,11 +914,12 @@ const Navbar = () => {
                       h-full
                       flex
                       items-center
-                      text-sm
-                      font-semibold
-                      text-gray-700
-                      hover:text-blue-600
-                      hover:bg-blue-50
+                      text-[14px]
+                      font-bold
+                      tracking-[0.01em]
+                      text-slate-700
+                      hover:text-amber-800
+                      hover:bg-amber-50
                       transition
                       rounded-lg
                     "
@@ -999,7 +1054,7 @@ const Navbar = () => {
 
               {/* HOME */}
 
-              <MenuItem
+              <ListItemButton
                 onClick={goHome}
                 sx={{
                   py: 1.5,
@@ -1015,13 +1070,13 @@ const Navbar = () => {
                 />
 
                 Home
-              </MenuItem>
+              </ListItemButton>
 
               {/* CATEGORIES */}
 
               {mainCategory.map(
                 (item) => (
-                  <MenuItem
+                  <ListItemButton
                     key={
                       item.categoryId
                     }
@@ -1037,7 +1092,7 @@ const Navbar = () => {
                     }}
                   >
                     {item.name}
-                  </MenuItem>
+                  </ListItemButton>
                 )
               )}
 
@@ -1045,7 +1100,7 @@ const Navbar = () => {
 
               {/* ALL PRODUCTS */}
 
-              <MenuItem
+              <ListItemButton
                 onClick={handleAllProductsClick}
                 sx={{
                   py: 1.5,
@@ -1054,7 +1109,7 @@ const Navbar = () => {
                 }}
               >
                 All Products
-              </MenuItem>
+              </ListItemButton>
 
               <Divider />
 
@@ -1062,7 +1117,7 @@ const Navbar = () => {
 
               {isLoggedIn ? (
                 <>
-                  <MenuItem
+                  <ListItemButton
                     onClick={() => {
                       setMobileMenu(false);
 
@@ -1083,9 +1138,9 @@ const Navbar = () => {
                     />
 
                     My Profile
-                  </MenuItem>
+                  </ListItemButton>
 
-                  <MenuItem
+                  <ListItemButton
                     onClick={() => {
                       setMobileMenu(false);
 
@@ -1106,9 +1161,9 @@ const Navbar = () => {
                     />
 
                     My Orders
-                  </MenuItem>
+                  </ListItemButton>
 
-                  <MenuItem
+                  <ListItemButton
                     onClick={() => {
                       setMobileMenu(false);
 
@@ -1129,9 +1184,9 @@ const Navbar = () => {
                     />
 
                     My Addresses
-                  </MenuItem>
+                  </ListItemButton>
 
-                  <MenuItem
+                  <ListItemButton
                     onClick={
                       handleLogout
                     }
@@ -1148,10 +1203,10 @@ const Navbar = () => {
                     />
 
                     Logout
-                  </MenuItem>
+                  </ListItemButton>
                 </>
               ) : (
-                <MenuItem
+                <ListItemButton
                   onClick={() => {
                     setMobileMenu(false);
 
@@ -1171,14 +1226,14 @@ const Navbar = () => {
                   />
 
                   Login
-                </MenuItem>
+                </ListItemButton>
               )}
 
               <Divider />
 
               {/* WISHLIST */}
 
-              <MenuItem
+              <ListItemButton
                 onClick={() => {
                   setMobileMenu(false);
 
@@ -1197,11 +1252,11 @@ const Navbar = () => {
                 />
 
                 Wishlist
-              </MenuItem>
+              </ListItemButton>
 
               {/* CART */}
 
-              <MenuItem
+              <ListItemButton
                 onClick={() => {
                   setMobileMenu(false);
 
@@ -1237,13 +1292,13 @@ const Navbar = () => {
                     {cartCount}
                   </span>
                 )}
-              </MenuItem>
+              </ListItemButton>
 
               <Divider />
 
               {/* SELLER */}
 
-              <MenuItem
+              <ListItemButton
                 onClick={() => {
                   setMobileMenu(false);
 
@@ -1265,10 +1320,72 @@ const Navbar = () => {
                 />
 
                 Become a Seller
-              </MenuItem>
+              </ListItemButton>
             </div>
           )}
       </Box>
+
+      {/* =====================================================
+          MOBILE BOTTOM NAVIGATION
+          Visible on phones and tablets; desktop keeps the top nav.
+      ===================================================== */}
+      {!isLarge && (
+        <Box
+          component="nav"
+          aria-label="Mobile bottom navigation"
+          sx={{
+            position: "fixed",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 1300,
+            display: "grid",
+            gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
+            alignItems: "center",
+            minHeight: 68,
+            pb: "env(safe-area-inset-bottom)",
+            bgcolor: "rgba(255,255,255,0.97)",
+            backdropFilter: "blur(14px)",
+            borderTop: "1px solid #e8edf5",
+            boxShadow: "0 -6px 22px rgba(15,23,42,0.09)",
+          }}
+        >
+          {[
+            { label: "Home", icon: <HomeOutlined />, action: goHome },
+            { label: "Shop", icon: <Storefront />, action: handleAllProductsClick },
+            { label: "Wishlist", icon: <FavoriteBorder />, action: () => navigate("/wishlist") },
+            { label: "Cart", icon: <AddShoppingCart />, action: () => navigate("/cart"), count: cartCount },
+            {
+              label: "Account",
+              icon: isLoggedIn ? <PersonOutlineOutlined /> : <AccountCircle />,
+              action: (event: React.MouseEvent<HTMLElement>) => {
+                if (isLoggedIn) handleAccountClick(event);
+                else navigate("/login");
+              },
+            },
+          ].map((item) => (
+            <button
+              key={item.label}
+              type="button"
+              onClick={item.action as React.MouseEventHandler<HTMLButtonElement>}
+              aria-label={item.label}
+              className="relative flex min-w-0 flex-col items-center justify-center gap-1 py-2 text-[10px] font-semibold text-slate-600 transition-colors hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500"
+            >
+              <span className="relative flex h-6 items-center justify-center">
+                {React.cloneElement(item.icon as React.ReactElement<any>, {
+                  sx: { fontSize: 23 },
+                })}
+                {item.label === "Cart" && cartCount > 0 && (
+                  <span className="absolute -right-3 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[9px] font-bold leading-none text-white">
+                    {cartCount > 99 ? "99+" : cartCount}
+                  </span>
+                )}
+              </span>
+              <span className="truncate">{item.label}</span>
+            </button>
+          ))}
+        </Box>
+      )}
     </>
   );
 };

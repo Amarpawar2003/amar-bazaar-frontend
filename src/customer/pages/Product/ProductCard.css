@@ -52,7 +52,7 @@
 .ab-product-image-wrap {
   position: relative;
 
-  height: 260px;
+  height: clamp(190px, 22vw, 260px);
 
   overflow: hidden;
 
@@ -751,5 +751,175 @@
   .ab-image-dot,
   .ab-arrow {
     transition: none !important;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE POLISH — MOBILE & TABLET
+   Keeps desktop card styling intact.
+========================================================= */
+
+.ab-product-card {
+  width: 100%;
+  min-width: 0;
+}
+
+.ab-product-image {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .ab-product-image-wrap {
+    height: clamp(170px, 34vw, 230px);
+  }
+
+  .ab-product-info {
+    padding: 12px;
+  }
+
+  .ab-product-title {
+    min-height: 2.7em;
+    font-size: 13px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .ab-rating-row {
+    gap: 5px;
+    margin-top: 6px;
+  }
+
+  .ab-product-price {
+    gap: 5px 7px;
+    margin-top: 8px;
+  }
+
+  .ab-product-selling {
+    font-size: 16px;
+  }
+
+  .ab-product-mrp {
+    font-size: 11px;
+  }
+
+  .ab-product-discount {
+    font-size: 10px;
+  }
+
+  .ab-quick-view {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ab-image-overlay {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .ab-product-image-wrap {
+    height: clamp(145px, 42vw, 190px);
+  }
+
+  .ab-discount-badge {
+    top: 8px;
+    left: 8px;
+    min-height: 23px;
+    padding: 4px 7px;
+    font-size: 9px;
+  }
+
+  .ab-wishlist-position {
+    top: 6px;
+    right: 6px;
+  }
+
+  .ab-wish-btn {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .ab-wish-btn svg {
+    font-size: 18px;
+  }
+
+  .ab-quick-view {
+    right: 6px;
+    bottom: 8px;
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .ab-quick-view svg {
+    font-size: 17px;
+  }
+
+  .ab-product-info {
+    padding: 10px;
+  }
+
+  .ab-product-category {
+    margin-bottom: 4px;
+    font-size: 9px;
+  }
+
+  .ab-product-title {
+    min-height: 2.7em;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .ab-rating-row {
+    min-height: 20px;
+    margin-top: 5px;
+  }
+
+  .ab-rating-text,
+  .ab-no-rating {
+    font-size: 9px;
+  }
+
+  .ab-product-price {
+    align-items: baseline;
+    gap: 4px 6px;
+    margin-top: 7px;
+  }
+
+  .ab-product-selling {
+    font-size: 15px;
+  }
+
+  .ab-product-mrp {
+    font-size: 10px;
+  }
+
+  .ab-product-discount {
+    font-size: 9px;
+  }
+
+  .ab-product-bottom {
+    margin-top: 9px;
+    padding-top: 8px;
+    font-size: 10px;
+  }
+
+  .ab-arrow {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 22px;
+  }
+}
+
+@media (hover: none) {
+  .ab-product-card:hover {
+    transform: none;
+  }
+
+  .ab-product-card:hover .ab-quick-view {
+    opacity: 1;
+  }
+
+  .ab-product-card:hover .ab-arrow {
+    transform: none;
   }
 }
